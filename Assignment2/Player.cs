@@ -62,6 +62,7 @@ namespace Assignment2
         //other data
         private bool equipRingFirstSlot = true;//true when next ring should be equiped into the first ring slot, false for second slot
         private bool equipTrinketFirstSlot = true;//true when next trinket should be equiped into the first trinket slot, false for second slot
+        private uint invFullSlots = 0;//number of slots in inventory that are full
 
         ///public attributes
         public uint ID
@@ -231,7 +232,7 @@ namespace Assignment2
                     }
                 }
                 else throw new Exception("This trinket requires level " + Globals.items[newGearID].Requirement + "to equip. " +
-                    "Player's current level is" + level + ".");
+                    "Player's current level is " + level + ".");
             }
             else throw new Exception("Gear ID could not be found.");
         }
@@ -247,13 +248,15 @@ namespace Assignment2
              * @gearSlot = Desired gear slot to move to inventory.
              **************************************************************************/
 
-            if (inventory.Count >= Constants.MAX_INVENTORY_SIZE) throw new Exception("Can't unequip gear. All inventory slots are full.");
+            if (invFullSlots >= Constants.MAX_INVENTORY_SIZE) throw new Exception("Can't unequip gear. All inventory slots are full.");
             else
             {
                 if (gear[gearSlot] == 0) return;//don't do anything if gear slot is empty
 
                 inventory.Add(gear[gearSlot]);
                 gear[gearSlot] = 0;//clear gear slot when finished
+
+                invFullSlots++;
             }
         }
 
