@@ -1,7 +1,7 @@
 ﻿
 namespace Assignment2
 {
-    partial class Form1
+    partial class player_guild_management
     {
         /// <summary>
         /// Required designer variable.
@@ -30,33 +30,33 @@ namespace Assignment2
         private void InitializeComponent()
         {
             this.managementFunctions_gbx = new System.Windows.Forms.GroupBox();
-            this.printRoster_btn = new System.Windows.Forms.Button();
-            this.disbandGuild_btn = new System.Windows.Forms.Button();
-            this.leaveGuild_btn = new System.Windows.Forms.Button();
-            this.joinGuild_btn = new System.Windows.Forms.Button();
-            this.aplySearchCrit_btn = new System.Windows.Forms.Button();
-            this.playerSearch_txt = new System.Windows.Forms.TextBox();
-            this.searchPlayer_lbl = new System.Windows.Forms.Label();
             this.guildSearch_lbl = new System.Windows.Forms.Label();
             this.guildSearch_txt = new System.Windows.Forms.TextBox();
+            this.searchPlayer_lbl = new System.Windows.Forms.Label();
+            this.playerSearch_txt = new System.Windows.Forms.TextBox();
+            this.aplySearchCrit_btn = new System.Windows.Forms.Button();
+            this.leaveGuild_btn = new System.Windows.Forms.Button();
+            this.joinGuild_btn = new System.Windows.Forms.Button();
+            this.disbandGuild_btn = new System.Windows.Forms.Button();
+            this.printRoster_btn = new System.Windows.Forms.Button();
             this.newPlayer_gbx = new System.Windows.Forms.GroupBox();
-            this.newPlayerNme_lbl = new System.Windows.Forms.Label();
-            this.newPlayerName_txt = new System.Windows.Forms.TextBox();
-            this.newPlayerClass_lbl = new System.Windows.Forms.Label();
-            this.newPlayerClass_cbx = new System.Windows.Forms.ComboBox();
-            this.newPlayerRace_cbx = new System.Windows.Forms.ComboBox();
-            this.newPlayerRace_lbl = new System.Windows.Forms.Label();
+            this.addNewPlayer_btn = new System.Windows.Forms.Button();
             this.newPlayerRole_cbx = new System.Windows.Forms.ComboBox();
             this.newPlayerRole_lbl = new System.Windows.Forms.Label();
-            this.addNewPlayer_btn = new System.Windows.Forms.Button();
+            this.newPlayerRace_cbx = new System.Windows.Forms.ComboBox();
+            this.newPlayerRace_lbl = new System.Windows.Forms.Label();
+            this.newPlayerClass_cbx = new System.Windows.Forms.ComboBox();
+            this.newPlayerClass_lbl = new System.Windows.Forms.Label();
+            this.newPlayerNme_lbl = new System.Windows.Forms.Label();
+            this.newPlayerName_txt = new System.Windows.Forms.TextBox();
             this.createGuild_gbx = new System.Windows.Forms.GroupBox();
-            this.newGuildName_lbl = new System.Windows.Forms.Label();
-            this.newGuildName_txt = new System.Windows.Forms.TextBox();
-            this.newGuildServer_lbl = new System.Windows.Forms.Label();
-            this.newGuildServer_txt = new System.Windows.Forms.ComboBox();
+            this.addNewGuild_btn = new System.Windows.Forms.Button();
             this.newGuildType_cbx = new System.Windows.Forms.ComboBox();
             this.newGuildType_lbl = new System.Windows.Forms.Label();
-            this.addNewGuild_btn = new System.Windows.Forms.Button();
+            this.newGuildServer_txt = new System.Windows.Forms.ComboBox();
+            this.newGuildServer_lbl = new System.Windows.Forms.Label();
+            this.newGuildName_lbl = new System.Windows.Forms.Label();
+            this.newGuildName_txt = new System.Windows.Forms.TextBox();
             this.title_lbl = new System.Windows.Forms.Label();
             this.playerList_lbx = new System.Windows.Forms.ListBox();
             this.playerList_lbl = new System.Windows.Forms.Label();
@@ -89,25 +89,47 @@ namespace Assignment2
             this.managementFunctions_gbx.Text = "Management Functions";
             this.managementFunctions_gbx.Enter += new System.EventHandler(this.managementFunctions_gbx_Enter);
             // 
-            // printRoster_btn
+            // guildSearch_lbl
             // 
-            this.printRoster_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.printRoster_btn.Location = new System.Drawing.Point(6, 19);
-            this.printRoster_btn.Name = "printRoster_btn";
-            this.printRoster_btn.Size = new System.Drawing.Size(124, 23);
-            this.printRoster_btn.TabIndex = 0;
-            this.printRoster_btn.Text = "Print Guild Roster";
-            this.printRoster_btn.UseVisualStyleBackColor = true;
+            this.guildSearch_lbl.AutoSize = true;
+            this.guildSearch_lbl.Location = new System.Drawing.Point(161, 90);
+            this.guildSearch_lbl.Name = "guildSearch_lbl";
+            this.guildSearch_lbl.Size = new System.Drawing.Size(122, 13);
+            this.guildSearch_lbl.TabIndex = 8;
+            this.guildSearch_lbl.Text = "Search Guild (by Server)";
             // 
-            // disbandGuild_btn
+            // guildSearch_txt
             // 
-            this.disbandGuild_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.disbandGuild_btn.Location = new System.Drawing.Point(6, 48);
-            this.disbandGuild_btn.Name = "disbandGuild_btn";
-            this.disbandGuild_btn.Size = new System.Drawing.Size(124, 23);
-            this.disbandGuild_btn.TabIndex = 1;
-            this.disbandGuild_btn.Text = "Disband Guild";
-            this.disbandGuild_btn.UseVisualStyleBackColor = true;
+            this.guildSearch_txt.Location = new System.Drawing.Point(164, 106);
+            this.guildSearch_txt.Name = "guildSearch_txt";
+            this.guildSearch_txt.Size = new System.Drawing.Size(117, 20);
+            this.guildSearch_txt.TabIndex = 7;
+            // 
+            // searchPlayer_lbl
+            // 
+            this.searchPlayer_lbl.AutoSize = true;
+            this.searchPlayer_lbl.Location = new System.Drawing.Point(161, 32);
+            this.searchPlayer_lbl.Name = "searchPlayer_lbl";
+            this.searchPlayer_lbl.Size = new System.Drawing.Size(124, 13);
+            this.searchPlayer_lbl.TabIndex = 6;
+            this.searchPlayer_lbl.Text = "Search Player (by Name)";
+            // 
+            // playerSearch_txt
+            // 
+            this.playerSearch_txt.Location = new System.Drawing.Point(164, 48);
+            this.playerSearch_txt.Name = "playerSearch_txt";
+            this.playerSearch_txt.Size = new System.Drawing.Size(117, 20);
+            this.playerSearch_txt.TabIndex = 5;
+            // 
+            // aplySearchCrit_btn
+            // 
+            this.aplySearchCrit_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.aplySearchCrit_btn.Location = new System.Drawing.Point(6, 135);
+            this.aplySearchCrit_btn.Name = "aplySearchCrit_btn";
+            this.aplySearchCrit_btn.Size = new System.Drawing.Size(124, 23);
+            this.aplySearchCrit_btn.TabIndex = 4;
+            this.aplySearchCrit_btn.Text = "Apply Search Criteria";
+            this.aplySearchCrit_btn.UseVisualStyleBackColor = true;
             // 
             // leaveGuild_btn
             // 
@@ -129,47 +151,25 @@ namespace Assignment2
             this.joinGuild_btn.Text = "Join Guild";
             this.joinGuild_btn.UseVisualStyleBackColor = true;
             // 
-            // aplySearchCrit_btn
+            // disbandGuild_btn
             // 
-            this.aplySearchCrit_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.aplySearchCrit_btn.Location = new System.Drawing.Point(6, 135);
-            this.aplySearchCrit_btn.Name = "aplySearchCrit_btn";
-            this.aplySearchCrit_btn.Size = new System.Drawing.Size(124, 23);
-            this.aplySearchCrit_btn.TabIndex = 4;
-            this.aplySearchCrit_btn.Text = "Apply Search Criteria";
-            this.aplySearchCrit_btn.UseVisualStyleBackColor = true;
+            this.disbandGuild_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.disbandGuild_btn.Location = new System.Drawing.Point(6, 48);
+            this.disbandGuild_btn.Name = "disbandGuild_btn";
+            this.disbandGuild_btn.Size = new System.Drawing.Size(124, 23);
+            this.disbandGuild_btn.TabIndex = 1;
+            this.disbandGuild_btn.Text = "Disband Guild";
+            this.disbandGuild_btn.UseVisualStyleBackColor = true;
             // 
-            // playerSearch_txt
+            // printRoster_btn
             // 
-            this.playerSearch_txt.Location = new System.Drawing.Point(164, 48);
-            this.playerSearch_txt.Name = "playerSearch_txt";
-            this.playerSearch_txt.Size = new System.Drawing.Size(117, 20);
-            this.playerSearch_txt.TabIndex = 5;
-            // 
-            // searchPlayer_lbl
-            // 
-            this.searchPlayer_lbl.AutoSize = true;
-            this.searchPlayer_lbl.Location = new System.Drawing.Point(161, 32);
-            this.searchPlayer_lbl.Name = "searchPlayer_lbl";
-            this.searchPlayer_lbl.Size = new System.Drawing.Size(124, 13);
-            this.searchPlayer_lbl.TabIndex = 6;
-            this.searchPlayer_lbl.Text = "Search Player (by Name)";
-            // 
-            // guildSearch_lbl
-            // 
-            this.guildSearch_lbl.AutoSize = true;
-            this.guildSearch_lbl.Location = new System.Drawing.Point(161, 90);
-            this.guildSearch_lbl.Name = "guildSearch_lbl";
-            this.guildSearch_lbl.Size = new System.Drawing.Size(122, 13);
-            this.guildSearch_lbl.TabIndex = 8;
-            this.guildSearch_lbl.Text = "Search Guild (by Server)";
-            // 
-            // guildSearch_txt
-            // 
-            this.guildSearch_txt.Location = new System.Drawing.Point(164, 106);
-            this.guildSearch_txt.Name = "guildSearch_txt";
-            this.guildSearch_txt.Size = new System.Drawing.Size(117, 20);
-            this.guildSearch_txt.TabIndex = 7;
+            this.printRoster_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.printRoster_btn.Location = new System.Drawing.Point(6, 19);
+            this.printRoster_btn.Name = "printRoster_btn";
+            this.printRoster_btn.Size = new System.Drawing.Size(124, 23);
+            this.printRoster_btn.TabIndex = 0;
+            this.printRoster_btn.Text = "Print Guild Roster";
+            this.printRoster_btn.UseVisualStyleBackColor = true;
             // 
             // newPlayer_gbx
             // 
@@ -190,55 +190,15 @@ namespace Assignment2
             this.newPlayer_gbx.TabStop = false;
             this.newPlayer_gbx.Text = "Create New Player";
             // 
-            // newPlayerNme_lbl
+            // addNewPlayer_btn
             // 
-            this.newPlayerNme_lbl.AutoSize = true;
-            this.newPlayerNme_lbl.Location = new System.Drawing.Point(3, 19);
-            this.newPlayerNme_lbl.Name = "newPlayerNme_lbl";
-            this.newPlayerNme_lbl.Size = new System.Drawing.Size(67, 13);
-            this.newPlayerNme_lbl.TabIndex = 8;
-            this.newPlayerNme_lbl.Text = "Player Name";
-            // 
-            // newPlayerName_txt
-            // 
-            this.newPlayerName_txt.Location = new System.Drawing.Point(6, 35);
-            this.newPlayerName_txt.Name = "newPlayerName_txt";
-            this.newPlayerName_txt.Size = new System.Drawing.Size(117, 20);
-            this.newPlayerName_txt.TabIndex = 7;
-            // 
-            // newPlayerClass_lbl
-            // 
-            this.newPlayerClass_lbl.AutoSize = true;
-            this.newPlayerClass_lbl.Location = new System.Drawing.Point(3, 65);
-            this.newPlayerClass_lbl.Name = "newPlayerClass_lbl";
-            this.newPlayerClass_lbl.Size = new System.Drawing.Size(32, 13);
-            this.newPlayerClass_lbl.TabIndex = 10;
-            this.newPlayerClass_lbl.Text = "Class";
-            // 
-            // newPlayerClass_cbx
-            // 
-            this.newPlayerClass_cbx.FormattingEnabled = true;
-            this.newPlayerClass_cbx.Location = new System.Drawing.Point(6, 81);
-            this.newPlayerClass_cbx.Name = "newPlayerClass_cbx";
-            this.newPlayerClass_cbx.Size = new System.Drawing.Size(117, 21);
-            this.newPlayerClass_cbx.TabIndex = 11;
-            // 
-            // newPlayerRace_cbx
-            // 
-            this.newPlayerRace_cbx.FormattingEnabled = true;
-            this.newPlayerRace_cbx.Location = new System.Drawing.Point(139, 34);
-            this.newPlayerRace_cbx.Name = "newPlayerRace_cbx";
-            this.newPlayerRace_cbx.Size = new System.Drawing.Size(117, 21);
-            this.newPlayerRace_cbx.TabIndex = 13;
-            // 
-            // newPlayerRace_lbl
-            // 
-            this.newPlayerRace_lbl.AutoSize = true;
-            this.newPlayerRace_lbl.Location = new System.Drawing.Point(136, 18);
-            this.newPlayerRace_lbl.Name = "newPlayerRace_lbl";
-            this.newPlayerRace_lbl.Size = new System.Drawing.Size(33, 13);
-            this.newPlayerRace_lbl.TabIndex = 12;
-            this.newPlayerRace_lbl.Text = "Race";
+            this.addNewPlayer_btn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.addNewPlayer_btn.Location = new System.Drawing.Point(282, 32);
+            this.addNewPlayer_btn.Name = "addNewPlayer_btn";
+            this.addNewPlayer_btn.Size = new System.Drawing.Size(75, 23);
+            this.addNewPlayer_btn.TabIndex = 9;
+            this.addNewPlayer_btn.Text = "Add Player";
+            this.addNewPlayer_btn.UseVisualStyleBackColor = true;
             // 
             // newPlayerRole_cbx
             // 
@@ -257,15 +217,55 @@ namespace Assignment2
             this.newPlayerRole_lbl.TabIndex = 14;
             this.newPlayerRole_lbl.Text = "Role";
             // 
-            // addNewPlayer_btn
+            // newPlayerRace_cbx
             // 
-            this.addNewPlayer_btn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.addNewPlayer_btn.Location = new System.Drawing.Point(282, 32);
-            this.addNewPlayer_btn.Name = "addNewPlayer_btn";
-            this.addNewPlayer_btn.Size = new System.Drawing.Size(75, 23);
-            this.addNewPlayer_btn.TabIndex = 9;
-            this.addNewPlayer_btn.Text = "Add Player";
-            this.addNewPlayer_btn.UseVisualStyleBackColor = true;
+            this.newPlayerRace_cbx.FormattingEnabled = true;
+            this.newPlayerRace_cbx.Location = new System.Drawing.Point(139, 34);
+            this.newPlayerRace_cbx.Name = "newPlayerRace_cbx";
+            this.newPlayerRace_cbx.Size = new System.Drawing.Size(117, 21);
+            this.newPlayerRace_cbx.TabIndex = 13;
+            // 
+            // newPlayerRace_lbl
+            // 
+            this.newPlayerRace_lbl.AutoSize = true;
+            this.newPlayerRace_lbl.Location = new System.Drawing.Point(136, 18);
+            this.newPlayerRace_lbl.Name = "newPlayerRace_lbl";
+            this.newPlayerRace_lbl.Size = new System.Drawing.Size(33, 13);
+            this.newPlayerRace_lbl.TabIndex = 12;
+            this.newPlayerRace_lbl.Text = "Race";
+            // 
+            // newPlayerClass_cbx
+            // 
+            this.newPlayerClass_cbx.FormattingEnabled = true;
+            this.newPlayerClass_cbx.Location = new System.Drawing.Point(6, 81);
+            this.newPlayerClass_cbx.Name = "newPlayerClass_cbx";
+            this.newPlayerClass_cbx.Size = new System.Drawing.Size(117, 21);
+            this.newPlayerClass_cbx.TabIndex = 11;
+            // 
+            // newPlayerClass_lbl
+            // 
+            this.newPlayerClass_lbl.AutoSize = true;
+            this.newPlayerClass_lbl.Location = new System.Drawing.Point(3, 65);
+            this.newPlayerClass_lbl.Name = "newPlayerClass_lbl";
+            this.newPlayerClass_lbl.Size = new System.Drawing.Size(32, 13);
+            this.newPlayerClass_lbl.TabIndex = 10;
+            this.newPlayerClass_lbl.Text = "Class";
+            // 
+            // newPlayerNme_lbl
+            // 
+            this.newPlayerNme_lbl.AutoSize = true;
+            this.newPlayerNme_lbl.Location = new System.Drawing.Point(3, 19);
+            this.newPlayerNme_lbl.Name = "newPlayerNme_lbl";
+            this.newPlayerNme_lbl.Size = new System.Drawing.Size(67, 13);
+            this.newPlayerNme_lbl.TabIndex = 8;
+            this.newPlayerNme_lbl.Text = "Player Name";
+            // 
+            // newPlayerName_txt
+            // 
+            this.newPlayerName_txt.Location = new System.Drawing.Point(6, 35);
+            this.newPlayerName_txt.Name = "newPlayerName_txt";
+            this.newPlayerName_txt.Size = new System.Drawing.Size(117, 20);
+            this.newPlayerName_txt.TabIndex = 7;
             // 
             // createGuild_gbx
             // 
@@ -284,38 +284,15 @@ namespace Assignment2
             this.createGuild_gbx.TabStop = false;
             this.createGuild_gbx.Text = "Create New Guild";
             // 
-            // newGuildName_lbl
+            // addNewGuild_btn
             // 
-            this.newGuildName_lbl.AutoSize = true;
-            this.newGuildName_lbl.Location = new System.Drawing.Point(3, 19);
-            this.newGuildName_lbl.Name = "newGuildName_lbl";
-            this.newGuildName_lbl.Size = new System.Drawing.Size(62, 13);
-            this.newGuildName_lbl.TabIndex = 10;
-            this.newGuildName_lbl.Text = "Guild Name";
-            // 
-            // newGuildName_txt
-            // 
-            this.newGuildName_txt.Location = new System.Drawing.Point(6, 35);
-            this.newGuildName_txt.Name = "newGuildName_txt";
-            this.newGuildName_txt.Size = new System.Drawing.Size(117, 20);
-            this.newGuildName_txt.TabIndex = 9;
-            // 
-            // newGuildServer_lbl
-            // 
-            this.newGuildServer_lbl.AutoSize = true;
-            this.newGuildServer_lbl.Location = new System.Drawing.Point(136, 19);
-            this.newGuildServer_lbl.Name = "newGuildServer_lbl";
-            this.newGuildServer_lbl.Size = new System.Drawing.Size(38, 13);
-            this.newGuildServer_lbl.TabIndex = 12;
-            this.newGuildServer_lbl.Text = "Server";
-            // 
-            // newGuildServer_txt
-            // 
-            this.newGuildServer_txt.FormattingEnabled = true;
-            this.newGuildServer_txt.Location = new System.Drawing.Point(139, 34);
-            this.newGuildServer_txt.Name = "newGuildServer_txt";
-            this.newGuildServer_txt.Size = new System.Drawing.Size(117, 21);
-            this.newGuildServer_txt.TabIndex = 16;
+            this.addNewGuild_btn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.addNewGuild_btn.Location = new System.Drawing.Point(282, 32);
+            this.addNewGuild_btn.Name = "addNewGuild_btn";
+            this.addNewGuild_btn.Size = new System.Drawing.Size(75, 23);
+            this.addNewGuild_btn.TabIndex = 19;
+            this.addNewGuild_btn.Text = "Add Guild";
+            this.addNewGuild_btn.UseVisualStyleBackColor = true;
             // 
             // newGuildType_cbx
             // 
@@ -334,15 +311,38 @@ namespace Assignment2
             this.newGuildType_lbl.TabIndex = 17;
             this.newGuildType_lbl.Text = "Type";
             // 
-            // addNewGuild_btn
+            // newGuildServer_txt
             // 
-            this.addNewGuild_btn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.addNewGuild_btn.Location = new System.Drawing.Point(282, 32);
-            this.addNewGuild_btn.Name = "addNewGuild_btn";
-            this.addNewGuild_btn.Size = new System.Drawing.Size(75, 23);
-            this.addNewGuild_btn.TabIndex = 19;
-            this.addNewGuild_btn.Text = "Add Guild";
-            this.addNewGuild_btn.UseVisualStyleBackColor = true;
+            this.newGuildServer_txt.FormattingEnabled = true;
+            this.newGuildServer_txt.Location = new System.Drawing.Point(139, 34);
+            this.newGuildServer_txt.Name = "newGuildServer_txt";
+            this.newGuildServer_txt.Size = new System.Drawing.Size(117, 21);
+            this.newGuildServer_txt.TabIndex = 16;
+            // 
+            // newGuildServer_lbl
+            // 
+            this.newGuildServer_lbl.AutoSize = true;
+            this.newGuildServer_lbl.Location = new System.Drawing.Point(136, 19);
+            this.newGuildServer_lbl.Name = "newGuildServer_lbl";
+            this.newGuildServer_lbl.Size = new System.Drawing.Size(38, 13);
+            this.newGuildServer_lbl.TabIndex = 12;
+            this.newGuildServer_lbl.Text = "Server";
+            // 
+            // newGuildName_lbl
+            // 
+            this.newGuildName_lbl.AutoSize = true;
+            this.newGuildName_lbl.Location = new System.Drawing.Point(3, 19);
+            this.newGuildName_lbl.Name = "newGuildName_lbl";
+            this.newGuildName_lbl.Size = new System.Drawing.Size(62, 13);
+            this.newGuildName_lbl.TabIndex = 10;
+            this.newGuildName_lbl.Text = "Guild Name";
+            // 
+            // newGuildName_txt
+            // 
+            this.newGuildName_txt.Location = new System.Drawing.Point(6, 35);
+            this.newGuildName_txt.Name = "newGuildName_txt";
+            this.newGuildName_txt.Size = new System.Drawing.Size(117, 20);
+            this.newGuildName_txt.TabIndex = 9;
             // 
             // title_lbl
             // 
@@ -415,7 +415,7 @@ namespace Assignment2
             this.textBox1.Size = new System.Drawing.Size(947, 142);
             this.textBox1.TabIndex = 9;
             // 
-            // Form1
+            // player_guild_management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -431,8 +431,8 @@ namespace Assignment2
             this.Controls.Add(this.createGuild_gbx);
             this.Controls.Add(this.newPlayer_gbx);
             this.Controls.Add(this.managementFunctions_gbx);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "player_guild_management";
+            this.Text = "Player/Guild Management System";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.managementFunctions_gbx.ResumeLayout(false);
             this.managementFunctions_gbx.PerformLayout();
