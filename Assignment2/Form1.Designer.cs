@@ -53,7 +53,7 @@ namespace Assignment2
             this.addNewGuild_btn = new System.Windows.Forms.Button();
             this.newGuildType_cbx = new System.Windows.Forms.ComboBox();
             this.newGuildType_lbl = new System.Windows.Forms.Label();
-            this.newGuildServer_txt = new System.Windows.Forms.ComboBox();
+            this.newGuildServer_cbx = new System.Windows.Forms.ComboBox();
             this.newGuildServer_lbl = new System.Windows.Forms.Label();
             this.newGuildName_lbl = new System.Windows.Forms.Label();
             this.newGuildName_txt = new System.Windows.Forms.TextBox();
@@ -63,7 +63,7 @@ namespace Assignment2
             this.guildList_lbl = new System.Windows.Forms.Label();
             this.guildList_lbx = new System.Windows.Forms.ListBox();
             this.output_lbl = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.output_txt = new System.Windows.Forms.TextBox();
             this.managementFunctions_gbx.SuspendLayout();
             this.newPlayer_gbx.SuspendLayout();
             this.createGuild_gbx.SuspendLayout();
@@ -150,6 +150,7 @@ namespace Assignment2
             this.joinGuild_btn.TabIndex = 2;
             this.joinGuild_btn.Text = "Join Guild";
             this.joinGuild_btn.UseVisualStyleBackColor = true;
+            this.joinGuild_btn.Click += new System.EventHandler(this.joinGuild_btn_Click);
             // 
             // disbandGuild_btn
             // 
@@ -170,6 +171,7 @@ namespace Assignment2
             this.printRoster_btn.TabIndex = 0;
             this.printRoster_btn.Text = "Print Guild Roster";
             this.printRoster_btn.UseVisualStyleBackColor = true;
+            this.printRoster_btn.Click += new System.EventHandler(this.printRoster_btn_Click);
             // 
             // newPlayer_gbx
             // 
@@ -199,6 +201,7 @@ namespace Assignment2
             this.addNewPlayer_btn.TabIndex = 9;
             this.addNewPlayer_btn.Text = "Add Player";
             this.addNewPlayer_btn.UseVisualStyleBackColor = true;
+            this.addNewPlayer_btn.Click += new System.EventHandler(this.addNewPlayer_btn_Click);
             // 
             // newPlayerRole_cbx
             // 
@@ -272,7 +275,7 @@ namespace Assignment2
             this.createGuild_gbx.Controls.Add(this.addNewGuild_btn);
             this.createGuild_gbx.Controls.Add(this.newGuildType_cbx);
             this.createGuild_gbx.Controls.Add(this.newGuildType_lbl);
-            this.createGuild_gbx.Controls.Add(this.newGuildServer_txt);
+            this.createGuild_gbx.Controls.Add(this.newGuildServer_cbx);
             this.createGuild_gbx.Controls.Add(this.newGuildServer_lbl);
             this.createGuild_gbx.Controls.Add(this.newGuildName_lbl);
             this.createGuild_gbx.Controls.Add(this.newGuildName_txt);
@@ -311,13 +314,13 @@ namespace Assignment2
             this.newGuildType_lbl.TabIndex = 17;
             this.newGuildType_lbl.Text = "Type";
             // 
-            // newGuildServer_txt
+            // newGuildServer_cbx
             // 
-            this.newGuildServer_txt.FormattingEnabled = true;
-            this.newGuildServer_txt.Location = new System.Drawing.Point(139, 34);
-            this.newGuildServer_txt.Name = "newGuildServer_txt";
-            this.newGuildServer_txt.Size = new System.Drawing.Size(117, 21);
-            this.newGuildServer_txt.TabIndex = 16;
+            this.newGuildServer_cbx.FormattingEnabled = true;
+            this.newGuildServer_cbx.Location = new System.Drawing.Point(139, 34);
+            this.newGuildServer_cbx.Name = "newGuildServer_cbx";
+            this.newGuildServer_cbx.Size = new System.Drawing.Size(117, 21);
+            this.newGuildServer_cbx.TabIndex = 16;
             // 
             // newGuildServer_lbl
             // 
@@ -359,7 +362,7 @@ namespace Assignment2
             // 
             this.playerList_lbx.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.playerList_lbx.FormattingEnabled = true;
-            this.playerList_lbx.Location = new System.Drawing.Point(467, 88);
+            this.playerList_lbx.Location = new System.Drawing.Point(467, 92);
             this.playerList_lbx.Name = "playerList_lbx";
             this.playerList_lbx.Size = new System.Drawing.Size(198, 420);
             this.playerList_lbx.TabIndex = 4;
@@ -406,14 +409,14 @@ namespace Assignment2
             this.output_lbl.TabIndex = 8;
             this.output_lbl.Text = "Output";
             // 
-            // textBox1
+            // output_txt
             // 
-            this.textBox1.Location = new System.Drawing.Point(18, 574);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(947, 142);
-            this.textBox1.TabIndex = 9;
+            this.output_txt.Location = new System.Drawing.Point(18, 574);
+            this.output_txt.Multiline = true;
+            this.output_txt.Name = "output_txt";
+            this.output_txt.ReadOnly = true;
+            this.output_txt.Size = new System.Drawing.Size(947, 142);
+            this.output_txt.TabIndex = 9;
             // 
             // player_guild_management
             // 
@@ -421,7 +424,7 @@ namespace Assignment2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(977, 728);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.output_txt);
             this.Controls.Add(this.output_lbl);
             this.Controls.Add(this.guildList_lbl);
             this.Controls.Add(this.guildList_lbx);
@@ -471,7 +474,7 @@ namespace Assignment2
         private System.Windows.Forms.Button addNewGuild_btn;
         private System.Windows.Forms.ComboBox newGuildType_cbx;
         private System.Windows.Forms.Label newGuildType_lbl;
-        private System.Windows.Forms.ComboBox newGuildServer_txt;
+        private System.Windows.Forms.ComboBox newGuildServer_cbx;
         private System.Windows.Forms.Label newGuildServer_lbl;
         private System.Windows.Forms.Label newGuildName_lbl;
         private System.Windows.Forms.TextBox newGuildName_txt;
@@ -481,7 +484,7 @@ namespace Assignment2
         private System.Windows.Forms.Label guildList_lbl;
         private System.Windows.Forms.ListBox guildList_lbx;
         private System.Windows.Forms.Label output_lbl;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox output_txt;
     }
 }
 

@@ -16,6 +16,7 @@ namespace Assignment2
 		//constructor
 		public GameFile()
 		{
+
 			LoadIn();
 
 		}
@@ -31,7 +32,7 @@ namespace Assignment2
 			try
 			{
 				//loading in the guilds into our Dictionary for use
-				using (StreamReader inGuild = new StreamReader("bin/init/guilds.txt"))
+				using (StreamReader inGuild = new StreamReader("init/guilds.txt"))
 				{
 					string line;
 					uint id;
@@ -56,7 +57,7 @@ namespace Assignment2
 			try
 			{
 				//loading in the items into our Dictionary for use
-				using (StreamReader inItems = new StreamReader("bin/init/equipment.txt"))
+				using (StreamReader inItems = new StreamReader("init/equipment.txt"))
 				{
 					string line;
 					uint id;
@@ -92,7 +93,7 @@ namespace Assignment2
 			try
 			{ 
 				//importing Players now
-				using (StreamReader inCharacter = new StreamReader("bin/init/players.txt"))
+				using (StreamReader inCharacter = new StreamReader("init/players.txt"))
 				{
 					string line;
 					uint id;
@@ -134,40 +135,51 @@ namespace Assignment2
 		 * this will loop through the items dictionary and print out each
 		 * entry using the ToString overwrite we did within that file
 		 ****************************************************************/
-		public void PrintItems()
+		public List<string> PrintItems()
         {
+			List<string> itemList = new List<string>();//list of items; return variable
+
 			foreach(KeyValuePair<uint, Item> item in Globals.items)
             {
-				Console.WriteLine(item.ToString());
+				itemList.Add(item.ToString());
             }
-			Console.WriteLine("End of items");
+			itemList.Add("End of items");
+
+			return itemList;
         }
 		/****************************************************************
 		* void PrintGuild() 
 		* This will loop through each guild entry and print out the string
 		* holding the guild name.
 		*****************************************************************/
-		public void PrintGuild()
+		public List<string> PrintGuild()
         {
+			List<string> guildList = new List<string>();//list of guilds; return variable
+
 			foreach(KeyValuePair<uint, string> guild in Globals.guilds)
             {
-				Console.WriteLine(guild.Value);
+				guildList.Add(guild.Value);
             }
-			Console.WriteLine("End of Guilds");
+			guildList.Add("End of Guilds");
+
+			return guildList;
         }
 		/****************************************************************
 		 * Void PrintPlayer()
 		 * this will loop through each player entry in the dictionary
 		 * using the ToString override within that class.
 		 ****************************************************************/
-		public void PrintPlayer()
+		public List<string> PrintPlayer()
         {
+			List<string> playerList = new List<string>(); //list of strings containing player information; return variable
+
 			foreach(KeyValuePair<uint, Player> character in Globals.characters)
             {
-				Console.WriteLine(character.ToString());
+				playerList.Add(character.ToString());
             }
-			Console.WriteLine("End of players");
+			playerList.Add("End of players");
 
+			return playerList;
         }
 		/***************************************************************************
 		 * public int SelectPlayer()
@@ -311,10 +323,10 @@ namespace Assignment2
 		 * This assigns the character's guildID field to the one the user specified
 		 * and prints a confirmation message
 		 * *********************************************************************/
-		public void JoinGuild(uint pid, uint gid)
+		public string JoinGuild(uint pid, uint gid)
         {
 			Globals.characters[pid].GuildID = gid;
-			Console.WriteLine(Globals.characters[pid].Name + " is now a member of " + Globals.guilds[gid]);
+			return Globals.characters[pid].Name + " is now a member of " + Globals.guilds[gid];
         }
 		/**********************************************************************
 		 * public void AddExp

@@ -25,10 +25,12 @@ namespace Assignment2
             level = 0;
             exp = 0;
             guildID = null;
+            class_ = null;
+            role = null;
         }
 
-        public Player(uint ID = 0, string Name = "", Race? Race = null, uint Level = 0, uint Exp = 0,
-            uint? GuildID = null, uint[] Gear = null, uint[] Inventory = null)
+        public Player(uint ID = 0, string Name = "", Race? Race_ = null, uint Level = 0, uint Exp = 0,
+            uint? GuildID = null, uint[] Gear = null, uint[] Inventory = null, Class? setClass = null, Role? Role_ = null)
         {
             /*******************************************************************
              * Alternate constructor.
@@ -39,7 +41,7 @@ namespace Assignment2
 
             id = ID;
             name = Name;
-            race = this.Race;
+            race = Race_;
             level = Level;
             exp = Exp;
             guildID = GuildID;
@@ -47,6 +49,8 @@ namespace Assignment2
             else gear = Gear;
             if (Inventory != null) inventory = new List<uint>(Inventory);
             else inventory = null;
+            class_ = setClass;
+            role = Role_;
         }
 
         ///prvate attributes
@@ -57,6 +61,8 @@ namespace Assignment2
         private uint level; //player's current level
         private uint exp; //current experience amount
         private uint? guildID; //ID of player's current guild
+        private Class? class_; //player's class
+        private Role? role; //player's role
         private uint[] gear = new uint[Constants.GEAR_SLOTS];
         private List<uint> inventory = new List<uint>();
         //other data
@@ -114,6 +120,35 @@ namespace Assignment2
         {
             get { return guildID; }
             set { guildID = value; }
+        }
+
+        public Class? Class_
+        {
+            get { return class_; }
+            set {
+                if (role == null) class_ = value;
+                //if current role is not an allowed role for the new class (or new class null), simply set the role to null
+                else if (value == null || !Constants.allowedRolls[(Class)class_].Contains((Role)role))
+                {
+                    role = null;
+                    class_ = value;
+                }
+            }
+        }
+
+        public Role? Role
+        {
+            get { return role; }
+            set
+            {
+                if (class_ == null) throw new Exception("Error: Can't assign a role without a class assigned.");//don't assign a new role without a class_ having a value first
+                else if (value == null) role = value;
+                else
+                {
+                    if (Constants.allowedRolls[(Class)class_].Contains((Role)value)) role = value;
+                    else throw new Exception("Error: Players of class " + Enum.GetName(typeof(Class), class_) + " cannot have the role " + Enum.GetName(typeof(Role), value) + ".");
+                }
+            }
         }
 
         public uint this[int index]
