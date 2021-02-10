@@ -161,9 +161,9 @@ namespace Assignment2
         {
 			List<string> guildList = new List<string>();//list of guilds; return variable
 
-			foreach(KeyValuePair<uint, string> guild in Globals.guilds)
+			foreach(KeyValuePair<uint, Guild> guild in Globals.guilds)
             {
-				guildList.Add(guild.Value);
+				guildList.Add(guild.Value.Name);
             }
 			guildList.Add("End of Guilds");
 
@@ -242,7 +242,7 @@ namespace Assignment2
 			int selection = 0;//used for user selection
 			string userIn;//used to catch user input
 			Dictionary<int, uint> translate = new Dictionary<int, uint>();//used to match user input to the key of the character for selection
-			foreach (KeyValuePair<uint, string> guild in Globals.guilds)
+			foreach (KeyValuePair<uint, Guild> guild in Globals.guilds)
 			{
 				Console.WriteLine(selection + " " + guild.Value);
 				translate.Add(selection, guild.Key);// match the character key with a shorthand user selection
