@@ -43,7 +43,7 @@ namespace Assignment2
 						string[] subs = line.Split('\t');
 						id = UInt32.Parse(subs[0]);
 						name = subs[1];
-						Globals.guilds.Add(id, name);
+						Globals.guilds.Add(id, new Guild(id, (GuildType)0, name));
 					}
 
 				}
@@ -332,7 +332,7 @@ namespace Assignment2
 		public string JoinGuild(uint pid, uint gid)
         {
 			Globals.characters[pid].GuildID = gid;
-			return Globals.characters[pid].Name + " is now a member of " + Globals.guilds[gid];
+			return Globals.characters[pid].Name + " is now a member of " + Globals.guilds[gid].Name;
         }
 		/**********************************************************************
 		 * public void AddExp
@@ -375,7 +375,7 @@ namespace Assignment2
                 {
 					if (character.Value.GuildID == gid) character.Value.GuildID = 0;
                 }
-				Console.WriteLine("Guild: " + Globals.guilds[gid] + " Successfully removed");
+				Console.WriteLine("Guild: " + Globals.guilds[gid].Name + " Successfully removed");
 				Globals.guilds.Remove(gid);
 			}
 			else
