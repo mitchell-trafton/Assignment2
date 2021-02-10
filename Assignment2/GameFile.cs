@@ -99,6 +99,7 @@ namespace Assignment2
 					uint id;
 					string name;
 					int race;
+					int cclass;
 					uint level;
 					uint exp;
 					uint? guildID;
@@ -111,15 +112,19 @@ namespace Assignment2
 						id = UInt32.Parse(subs[0]);
 						name = subs[1];
 						race = Int32.Parse(subs[2]);
-						level = UInt32.Parse(subs[3]);
-						exp = UInt32.Parse(subs[4]);
-						guildID = UInt32.Parse(subs[5]);
-						gearSlots = new uint[subs.Length - 6];
-						for(int i = 6; i<subs.Length-1; i++)//the rest of the file is inventory, this will record the IDs of player inventory and store them
+						cclass = Int32.Parse(subs[3]);
+						level = UInt32.Parse(subs[4]);
+						exp = UInt32.Parse(subs[5]);
+						guildID = UInt32.Parse(subs[6]);
+						
+						gearSlots = new uint[subs.Length - 7];
+						/*
+						for(int i = 7; i<subs.Length-1; i++)//the rest of the file is inventory, this will record the IDs of player inventory and store them
                         {
-							gearSlots[i-6] = UInt32.Parse(subs[i]);
+							gearSlots[i-7] = UInt32.Parse(subs[i]);
                         }
-						Globals.characters.Add(id, new Player(id, name, (Race?)race, level, exp, guildID, gearSlots, inventory));
+						*/
+						Globals.characters.Add(id, new Player(id, name, (Race?)race, level, exp, guildID, gearSlots, inventory, (Class)cclass, Constants.allowedRolls[(Class)cclass][0]));
 					}
 				}
 			}
@@ -165,9 +170,10 @@ namespace Assignment2
 			return guildList;
         }
 		/****************************************************************
-		 * Void PrintPlayer()
+		 * List<string> PrintPlayer()
 		 * this will loop through each player entry in the dictionary
-		 * using the ToString override within that class.
+		 * using the ToString override within that class, and place it
+		 * in a list of strings for use.
 		 ****************************************************************/
 		public List<string> PrintPlayer()
         {
@@ -351,6 +357,30 @@ namespace Assignment2
 			catch(Exception e)
             {
 
+            }
+        }
+		/******************************************************************
+		 * void Disband guild
+		 * input: uint gid, the guild id
+		 * this will first identify if the gid is valid, then will go through
+		 * the player dictionary and identify members of the guild, setting their
+		 * guild ID to 0 before printing a success message, and then removing 
+		 * the guild from the guild dictionary
+		 ******************************************************************/
+		public void DisbandGuild(uint gid)
+        {
+			if(Globals.guilds.ContainsKey(gid))
+            {
+				foreach (KeyValuePair<uint, Player> character in Globals.characters)
+                {
+					if (character.Value.GuildID == gid) character.Value.GuildID = 0;
+                }
+				Console.WriteLine("Guild: " + Globals.guilds[gid] + " Successfully removed");
+				Globals.guilds.Remove(gid);
+			}
+			else
+            {
+				Console.WriteLine("Error: guild with ID: " + gid + "Not found");
             }
         }
 		/**********************************************************************
