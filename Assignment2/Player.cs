@@ -351,5 +351,18 @@ namespace Assignment2
 
             return returnInfo;
         }
+
+        public string ToStringBasic()
+        {
+            /*************************************************************************************
+             * Returns a string containing a player's name, class, and level without any labels.
+             *************************************************************************************/
+            string classOut; //output for class
+
+            if (class_ != null) classOut = Enum.GetName(typeof(Class), class_);//only retrive value for class if it is not null
+            else classOut = "n/a"; //if class is null, just print n/a
+
+            return name.PadRight(15, ' ') + '\t' + classOut.PadRight(7, ' ') + "\t           " + level;
+        }
     }
 }
