@@ -125,7 +125,8 @@ namespace Assignment2
         public Class? Class_
         {
             get { return class_; }
-            set {
+            set
+            {
                 if (role == null) class_ = value;
                 //if current role is not an allowed role for the new class (or new class null), simply set the role to null
                 else if (value == null || !Constants.allowedRolls[(Class)class_].Contains((Role)role))
@@ -311,7 +312,7 @@ namespace Assignment2
             {
                 if (gear[gearSlot] == 0)
                 {
-                    Console.WriteLine(gearSlot + " | " +Enum.GetName(typeof(itemType), printGear) + ": empty");
+                    Console.WriteLine(gearSlot + " | " + Enum.GetName(typeof(itemType), printGear) + ": empty");
                 }
                 else
                 {
@@ -342,10 +343,10 @@ namespace Assignment2
             if (race != null) raceOut = Enum.GetName(typeof(Race), race);//only retrive value for race if it is not null
             else raceOut = "n/a"; //if race is null, just print n/a
 
-            returnInfo = "\nName: " + name.PadRight(20, ' ') + "\tRace: " + raceOut.PadRight(20,' ') + "\tLevel: " + level + "\t\tGuild: ";
+            returnInfo = "\nName: " + name.PadRight(20, ' ') + "\tRace: " + raceOut.PadRight(20, ' ') + "\tLevel: " + level + "\t\tGuild: ";
 
             if (guildID != null && guildID != 0)//only print guild if there is a valid ID availible 
-                returnInfo += Globals.guilds[(uint)guildID];
+                returnInfo += Globals.guilds[(uint)guildID].Name;
             else if (!Globals.guilds.ContainsKey((uint)guildID)) returnInfo += "[error: guild ID not recognized]";
             else returnInfo += "n/a";
 
