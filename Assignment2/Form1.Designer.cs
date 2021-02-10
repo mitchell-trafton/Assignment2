@@ -415,6 +415,7 @@ namespace Assignment2
             this.output_txt.Multiline = true;
             this.output_txt.Name = "output_txt";
             this.output_txt.ReadOnly = true;
+            this.output_txt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.output_txt.Size = new System.Drawing.Size(947, 142);
             this.output_txt.TabIndex = 9;
             // 

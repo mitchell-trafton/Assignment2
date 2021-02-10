@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="GameFile.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Guild.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Player.cs" />
