@@ -181,7 +181,7 @@ namespace Assignment2
 
 			foreach(KeyValuePair<uint, Player> character in Globals.characters)
             {
-				playerList.Add(character.ToString());
+				playerList.Add(character.Value.ToString());
             }
 			playerList.Add("End of players");
 

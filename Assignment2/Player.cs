@@ -337,8 +337,12 @@ namespace Assignment2
              ************************************************************************************/
 
             string returnInfo;//information to return
+            string raceOut; //output for race
 
-            returnInfo = "\nName: " + name + "\t\tRace: " + race + "\t\tLevel: " + level + "\t\tGuild: ";
+            if (race != null) raceOut = Enum.GetName(typeof(Race), race);//only retrive value for race if it is not null
+            else raceOut = "n/a"; //if race is null, just print n/a
+
+            returnInfo = "\nName: " + name.PadRight(20, ' ') + "\tRace: " + raceOut.PadRight(20,' ') + "\tLevel: " + level + "\t\tGuild: ";
 
             if (guildID != null && guildID != 0)//only print guild if there is a valid ID availible 
                 returnInfo += Globals.guilds[(uint)guildID];
