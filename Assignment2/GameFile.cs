@@ -430,9 +430,7 @@ namespace Assignment2
 				newPlayerEntry += ((int)p.Class_).ToString() + '\t';
 				newPlayerEntry += p.Level.ToString() + '\t';
 				newPlayerEntry += p.Exp.ToString() + '\t';
-				newPlayerEntry += p.GuildID.ToString() + '\t';
-
-				Console.WriteLine(newPlayerEntry);
+				newPlayerEntry += p.GuildID.ToString();
 
 				File.AppendAllText(@"init/players.txt", Environment.NewLine + newPlayerEntry);
 
@@ -445,6 +443,29 @@ namespace Assignment2
 				return false;
             }
 		}
+
+
+		public bool AddGuild(Guild g)
+        {
+            try
+            {
+				string newGuildEntry = "";
+
+				newGuildEntry += g.GID.ToString() + '\t';
+				newGuildEntry += g.Name + '-';
+				newGuildEntry += g.Server;
+
+				File.AppendAllText(@"init/guilds.txt", Environment.NewLine + newGuildEntry);
+
+				Globals.guilds.Add(g.GID, g);
+
+				return true;
+            }
+			catch (Exception e)
+            {//if new guild was unable to be created, return false
+				return false;
+            }
+        }
 	}
 
 	

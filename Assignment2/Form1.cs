@@ -156,6 +156,41 @@ namespace Assignment2
             }
         }
 
+        private void addNewGuild_btn_Click(object sender, EventArgs e)
+        {
+            uint newGuildID = 0; //id for new guild
+
+            if (newGuildName_txt.Text == "" || newGuildServer_cbx.SelectedIndex == -1 || newGuildType_cbx.SelectedIndex == -1)
+            {//if any field for new guild is blank, don't create an new guild and display an appropriate message
+                output_txt.Text = "New guild not created. Please fill out all fields.";
+            }
+            else
+            {
+                //generate new guild ID by adding the numerical values of each character in guild name and moding it by 999999
+                foreach (char c in newGuildName_txt.Text)
+                    newGuildID += (uint)c;
+                newGuildID %= 999999;
+                //keep adding 1 to newGuildID until it doesn't match any existing guild IDs
+                while (Globals.guilds.ContainsKey(newGuildID)) newGuildID++;
+
+                //attempt to add new guild to file
+                if (Globals.game.AddGuild(new Guild(tid: newGuildID, tname: newGuildName_txt.Text, ttype:(GuildType)newGuildType_cbx.SelectedIndex, tserver: newGuildServer_cbx.Text)))
+                {//if guild creation was successful, update guildList_cbx and display a success message
+                    UpdateFilters();
+                    output_txt.Text = "New guild '" + newGuildName_txt.Text + "' successfully created!";
+
+                    //clear fields
+                    newGuildName_txt.Text = "";
+                    newGuildServer_cbx.SelectedIndex = -1;
+                    newGuildType_cbx.SelectedIndex = -1;
+                }
+                else
+                {//if new guild creation was not successful, display an error message
+                    output_txt.Text = "Error: Unable to add new guild to guild list. Please try agian later.";
+                }
+            }
+        }
+
         private void aplySearchCrit_btn_Click(object sender, EventArgs e)
         {
             UpdateFilters(playerSearch_txt.Text, guildSearch_txt.Text);

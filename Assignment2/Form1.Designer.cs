@@ -298,6 +298,7 @@ namespace Assignment2
             this.addNewGuild_btn.TabIndex = 19;
             this.addNewGuild_btn.Text = "Add Guild";
             this.addNewGuild_btn.UseVisualStyleBackColor = true;
+            this.addNewGuild_btn.Click += new System.EventHandler(this.addNewGuild_btn_Click);
             // 
             // newGuildType_cbx
             // 
