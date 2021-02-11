@@ -57,7 +57,7 @@ namespace Assignment2
         {
             //initialize StringWriter object for reading text from console output
             sw = new StringWriter();
-            Console.SetOut(sw);
+            //Console.SetOut(sw);
 
 
             //populate newPlayerRace_cbx
@@ -67,10 +67,6 @@ namespace Assignment2
             //populate newPlayerClass_cbx
             foreach (Class c in Enum.GetValues(typeof(Class)))
                 newPlayerClass_cbx.Items.Add(Enum.GetName(typeof(Class), c));
-
-            //populate newPlayerRoll_cbx
-            foreach (Role r in Enum.GetValues(typeof(Role)))
-                newPlayerRole_cbx.Items.Add(Enum.GetName(typeof(Role), r));
 
             //populate newGuildServer_cbx
             foreach (KeyValuePair<uint, Guild> guild in Globals.guilds)
@@ -124,12 +120,58 @@ namespace Assignment2
 
         private void addNewPlayer_btn_Click(object sender, EventArgs e)
         {
-            
+            uint newPlayerID = 0; //id for new player
+
+            if (newPlayerClass_cbx.SelectedIndex == -1 || newPlayerRace_cbx.SelectedIndex == -1 || newPlayerRole_cbx.SelectedIndex == -1 || newPlayerName_txt.Text == "")
+            {
+                //if any field for new player is blank, don't create a new player and display an appropriate message
+                output_txt.Text = "New player not created. Please fill out all fields.";
+            }
+            else
+            {
+                //generate new player ID by adding the numerical values of each character in player name and moding it by 99999999
+                foreach (char c in newPlayerName_txt.Text)
+                    newPlayerID += (uint)c;
+                newPlayerID %= 99999999;
+                //keep adding 1 to newPlayerID until it doesn't match any existing player IDs
+                while (Globals.characters.ContainsKey(newPlayerID)) newPlayerID++;
+
+                //attempt to add new player to file
+                if (Globals.game.AddPlayer(new Player(ID:newPlayerID, Name:newPlayerName_txt.Text, Race_:(Race)newPlayerRace_cbx.SelectedIndex, setClass:(Class)newPlayerClass_cbx.SelectedIndex, 
+                                                      Role_:Constants.allowedRolls[(Class)newPlayerClass_cbx.SelectedIndex][newPlayerRole_cbx.SelectedIndex])))
+                {//if player creation was successful, update playerList_cbx and display a success message
+                    UpdateFilters();
+                    output_txt.Text = "New player '" + newPlayerName_txt.Text + "' successfully created!";
+
+                    //clear fields
+                    newPlayerClass_cbx.SelectedIndex = -1;
+                    newPlayerRace_cbx.SelectedIndex = -1;
+                    newPlayerRole_cbx.SelectedIndex = -1;
+                    newPlayerName_txt.Text = "";
+                }
+                else
+                {//if new player creation was not successful, display an error message
+                    output_txt.Text = "Error: Unable to add new player to player list. Please try again later.";
+                }
+            }
         }
 
         private void aplySearchCrit_btn_Click(object sender, EventArgs e)
         {
             UpdateFilters(playerSearch_txt.Text, guildSearch_txt.Text);
+        }
+
+        private void newPlayerClass_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (newPlayerClass_cbx.SelectedIndex == -1) return;//do nothing if combobox is being reset
+
+            newPlayerRole_cbx.Items.Clear();
+            newPlayerRole_cbx.SelectedIndex = -1;
+            newPlayerRole_cbx.Text = "";
+            foreach (Role r in Constants.allowedRolls[(Class)newPlayerClass_cbx.SelectedIndex])
+            {
+                newPlayerRole_cbx.Items.Add(Enum.GetName(typeof(Role), r));
+            }
         }
     }
 }

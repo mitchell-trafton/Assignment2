@@ -115,8 +115,9 @@ namespace Assignment2
 						cclass = Int32.Parse(subs[3]);
 						level = UInt32.Parse(subs[4]);
 						exp = UInt32.Parse(subs[5]);
-						guildID = UInt32.Parse(subs[6]);
-						
+						if (subs[6] == "") guildID = null;
+						else guildID = UInt32.Parse(subs[6]);
+
 						gearSlots = new uint[subs.Length - 7];
 						/*
 						for(int i = 7; i<subs.Length-1; i++)//the rest of the file is inventory, this will record the IDs of player inventory and store them
@@ -130,7 +131,7 @@ namespace Assignment2
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("Characters.txt could not be read");
+				Console.WriteLine("Players.txt could not be read");
 				Console.WriteLine(e.Message);
 			}
 
@@ -416,5 +417,35 @@ namespace Assignment2
             }
         }
 
+
+		public bool AddPlayer(Player p)
+		{
+            try
+            {
+				string newPlayerEntry = "";
+
+				newPlayerEntry += p.ID.ToString() + '\t';
+				newPlayerEntry += p.Name + '\t';
+				newPlayerEntry += ((int)p.Race).ToString() + '\t';
+				newPlayerEntry += ((int)p.Class_).ToString() + '\t';
+				newPlayerEntry += p.Level.ToString() + '\t';
+				newPlayerEntry += p.Exp.ToString() + '\t';
+				newPlayerEntry += p.GuildID.ToString() + '\t';
+
+				Console.WriteLine(newPlayerEntry);
+
+				File.AppendAllText(@"init/players.txt", Environment.NewLine + newPlayerEntry);
+
+				Globals.characters.Add(p.ID, p);
+
+				return true;
+            }
+			catch (Exception e)
+            {//if player was unable to be created, return false
+				return false;
+            }
+		}
 	}
+
+	
 }

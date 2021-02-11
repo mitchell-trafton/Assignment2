@@ -245,6 +245,7 @@ namespace Assignment2
             this.newPlayerClass_cbx.Name = "newPlayerClass_cbx";
             this.newPlayerClass_cbx.Size = new System.Drawing.Size(117, 21);
             this.newPlayerClass_cbx.TabIndex = 11;
+            this.newPlayerClass_cbx.SelectedIndexChanged += new System.EventHandler(this.newPlayerClass_cbx_SelectedIndexChanged);
             // 
             // newPlayerClass_lbl
             // 
