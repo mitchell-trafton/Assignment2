@@ -15,7 +15,7 @@ namespace Assignment2
 			name = "N/A";
 			server = "N/A";
 		}
-		public Guild(uint tid, GuildType ttype, string tname, string? tserver = null)
+		public Guild(uint tid = 0, GuildType ttype = (GuildType)0, string tname = "", string tserver = "")
 		{
 			//checks to see if we were given a server name, since loading from file is deliniated by a dash, we will handle it in this class
 			if (String.IsNullOrEmpty(tserver))
