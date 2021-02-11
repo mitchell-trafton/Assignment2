@@ -130,6 +130,7 @@ namespace Assignment2
             this.aplySearchCrit_btn.TabIndex = 4;
             this.aplySearchCrit_btn.Text = "Apply Search Criteria";
             this.aplySearchCrit_btn.UseVisualStyleBackColor = true;
+            this.aplySearchCrit_btn.Click += new System.EventHandler(this.aplySearchCrit_btn_Click);
             // 
             // leaveGuild_btn
             // 
@@ -395,7 +396,7 @@ namespace Assignment2
             this.guildList_lbx.FormattingEnabled = true;
             this.guildList_lbx.Location = new System.Drawing.Point(706, 90);
             this.guildList_lbx.Name = "guildList_lbx";
-            this.guildList_lbx.Size = new System.Drawing.Size(229, 420);
+            this.guildList_lbx.Size = new System.Drawing.Size(244, 420);
             this.guildList_lbx.TabIndex = 6;
             // 
             // output_lbl

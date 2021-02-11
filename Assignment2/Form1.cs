@@ -15,6 +15,7 @@ namespace Assignment2
     {
         private StringWriter sw; //console output
         private List<uint> displayPlayerIDs = new List<uint>();//list of IDs corresponding with players being shown in playerList_lbx
+        private List<uint> displayGuildIDs = new List<uint>();//list of IDs corresponding with guilds being shown in guildList_lbx
 
         private void UpdateFilters(string playerFltr = "", string guildFltr = "")
         {
@@ -24,7 +25,9 @@ namespace Assignment2
             
             //clear the saved player/guild IDs and their listboxes
             displayPlayerIDs.Clear();
+            displayGuildIDs.Clear();
             playerList_lbx.Items.Clear();
+            guildList_lbx.Items.Clear();
 
             foreach (KeyValuePair<uint, Player> player in Globals.characters)
             {
@@ -32,6 +35,15 @@ namespace Assignment2
                 {
                     playerList_lbx.Items.Add(player.Value.ToStringBasic());
                     displayPlayerIDs.Add(player.Key);
+                }
+            }
+
+            foreach (KeyValuePair<uint, Assignment2.Guild> guild in Globals.guilds)
+            {
+                if (guild.Value.Name.StartsWith(guildFltr))
+                {
+                    guildList_lbx.Items.Add(guild.Value.ToStringBasic());
+                    displayGuildIDs.Add(guild.Key);
                 }
             }
         }
@@ -45,7 +57,7 @@ namespace Assignment2
         {
             //initialize StringWriter object for reading text from console output
             sw = new StringWriter();
-            //Console.SetOut(sw);
+            Console.SetOut(sw);
 
 
             //populate newPlayerRace_cbx
@@ -71,7 +83,7 @@ namespace Assignment2
                 else newGuildType_cbx.Items.Add(Enum.GetName(typeof(GuildType), g));
             }
 
-            //populate playerList_lbx
+            //populate playerList_lbx and guildList_lbx
             UpdateFilters();
 
             output_txt.Text = sw.ToString();
@@ -112,6 +124,11 @@ namespace Assignment2
         private void addNewPlayer_btn_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void aplySearchCrit_btn_Click(object sender, EventArgs e)
+        {
+            UpdateFilters(playerSearch_txt.Text, guildSearch_txt.Text);
         }
     }
 }
