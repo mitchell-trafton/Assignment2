@@ -347,7 +347,7 @@ namespace Assignment2
 
             if (guildID != null && guildID != 0)//only print guild if there is a valid ID availible 
                 returnInfo += Globals.guilds[(uint)guildID].Name;
-            else if (!Globals.guilds.ContainsKey((uint)guildID)) returnInfo += "[error: guild ID not recognized]";
+            else if (guildID != null && !Globals.guilds.ContainsKey((uint)guildID)) returnInfo += "[error: guild ID not recognized]";
             else returnInfo += "n/a";
 
             return returnInfo;

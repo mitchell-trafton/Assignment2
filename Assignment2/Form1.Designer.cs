@@ -34,7 +34,7 @@ namespace Assignment2
             this.guildSearch_txt = new System.Windows.Forms.TextBox();
             this.searchPlayer_lbl = new System.Windows.Forms.Label();
             this.playerSearch_txt = new System.Windows.Forms.TextBox();
-            this.aplySearchCrit_btn = new System.Windows.Forms.Button();
+            this.applySearchCrit_btn = new System.Windows.Forms.Button();
             this.leaveGuild_btn = new System.Windows.Forms.Button();
             this.joinGuild_btn = new System.Windows.Forms.Button();
             this.disbandGuild_btn = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@ namespace Assignment2
             this.newPlayerClass_lbl = new System.Windows.Forms.Label();
             this.newPlayerNme_lbl = new System.Windows.Forms.Label();
             this.newPlayerName_txt = new System.Windows.Forms.TextBox();
-            this.createGuild_gbx = new System.Windows.Forms.GroupBox();
+            this.newGuild_gbx = new System.Windows.Forms.GroupBox();
             this.addNewGuild_btn = new System.Windows.Forms.Button();
             this.newGuildType_cbx = new System.Windows.Forms.ComboBox();
             this.newGuildType_lbl = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@ namespace Assignment2
             this.output_txt = new System.Windows.Forms.TextBox();
             this.managementFunctions_gbx.SuspendLayout();
             this.newPlayer_gbx.SuspendLayout();
-            this.createGuild_gbx.SuspendLayout();
+            this.newGuild_gbx.SuspendLayout();
             this.SuspendLayout();
             // 
             // managementFunctions_gbx
@@ -75,7 +75,7 @@ namespace Assignment2
             this.managementFunctions_gbx.Controls.Add(this.guildSearch_txt);
             this.managementFunctions_gbx.Controls.Add(this.searchPlayer_lbl);
             this.managementFunctions_gbx.Controls.Add(this.playerSearch_txt);
-            this.managementFunctions_gbx.Controls.Add(this.aplySearchCrit_btn);
+            this.managementFunctions_gbx.Controls.Add(this.applySearchCrit_btn);
             this.managementFunctions_gbx.Controls.Add(this.leaveGuild_btn);
             this.managementFunctions_gbx.Controls.Add(this.joinGuild_btn);
             this.managementFunctions_gbx.Controls.Add(this.disbandGuild_btn);
@@ -87,7 +87,6 @@ namespace Assignment2
             this.managementFunctions_gbx.TabIndex = 0;
             this.managementFunctions_gbx.TabStop = false;
             this.managementFunctions_gbx.Text = "Management Functions";
-            this.managementFunctions_gbx.Enter += new System.EventHandler(this.managementFunctions_gbx_Enter);
             // 
             // guildSearch_lbl
             // 
@@ -121,16 +120,16 @@ namespace Assignment2
             this.playerSearch_txt.Size = new System.Drawing.Size(117, 20);
             this.playerSearch_txt.TabIndex = 5;
             // 
-            // aplySearchCrit_btn
+            // applySearchCrit_btn
             // 
-            this.aplySearchCrit_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.aplySearchCrit_btn.Location = new System.Drawing.Point(6, 135);
-            this.aplySearchCrit_btn.Name = "aplySearchCrit_btn";
-            this.aplySearchCrit_btn.Size = new System.Drawing.Size(124, 23);
-            this.aplySearchCrit_btn.TabIndex = 4;
-            this.aplySearchCrit_btn.Text = "Apply Search Criteria";
-            this.aplySearchCrit_btn.UseVisualStyleBackColor = true;
-            this.aplySearchCrit_btn.Click += new System.EventHandler(this.aplySearchCrit_btn_Click);
+            this.applySearchCrit_btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.applySearchCrit_btn.Location = new System.Drawing.Point(6, 135);
+            this.applySearchCrit_btn.Name = "applySearchCrit_btn";
+            this.applySearchCrit_btn.Size = new System.Drawing.Size(124, 23);
+            this.applySearchCrit_btn.TabIndex = 4;
+            this.applySearchCrit_btn.Text = "Apply Search Criteria";
+            this.applySearchCrit_btn.UseVisualStyleBackColor = true;
+            this.applySearchCrit_btn.Click += new System.EventHandler(this.aplySearchCrit_btn_Click);
             // 
             // leaveGuild_btn
             // 
@@ -141,6 +140,7 @@ namespace Assignment2
             this.leaveGuild_btn.TabIndex = 3;
             this.leaveGuild_btn.Text = "Leave Guild";
             this.leaveGuild_btn.UseVisualStyleBackColor = true;
+            this.leaveGuild_btn.Click += new System.EventHandler(this.leaveGuild_btn_Click);
             // 
             // joinGuild_btn
             // 
@@ -162,6 +162,7 @@ namespace Assignment2
             this.disbandGuild_btn.TabIndex = 1;
             this.disbandGuild_btn.Text = "Disband Guild";
             this.disbandGuild_btn.UseVisualStyleBackColor = true;
+            this.disbandGuild_btn.Click += new System.EventHandler(this.disbandGuild_btn_Click);
             // 
             // printRoster_btn
             // 
@@ -272,22 +273,22 @@ namespace Assignment2
             this.newPlayerName_txt.Size = new System.Drawing.Size(117, 20);
             this.newPlayerName_txt.TabIndex = 7;
             // 
-            // createGuild_gbx
+            // newGuild_gbx
             // 
-            this.createGuild_gbx.Controls.Add(this.addNewGuild_btn);
-            this.createGuild_gbx.Controls.Add(this.newGuildType_cbx);
-            this.createGuild_gbx.Controls.Add(this.newGuildType_lbl);
-            this.createGuild_gbx.Controls.Add(this.newGuildServer_cbx);
-            this.createGuild_gbx.Controls.Add(this.newGuildServer_lbl);
-            this.createGuild_gbx.Controls.Add(this.newGuildName_lbl);
-            this.createGuild_gbx.Controls.Add(this.newGuildName_txt);
-            this.createGuild_gbx.ForeColor = System.Drawing.SystemColors.Control;
-            this.createGuild_gbx.Location = new System.Drawing.Point(12, 394);
-            this.createGuild_gbx.Name = "createGuild_gbx";
-            this.createGuild_gbx.Size = new System.Drawing.Size(373, 118);
-            this.createGuild_gbx.TabIndex = 2;
-            this.createGuild_gbx.TabStop = false;
-            this.createGuild_gbx.Text = "Create New Guild";
+            this.newGuild_gbx.Controls.Add(this.addNewGuild_btn);
+            this.newGuild_gbx.Controls.Add(this.newGuildType_cbx);
+            this.newGuild_gbx.Controls.Add(this.newGuildType_lbl);
+            this.newGuild_gbx.Controls.Add(this.newGuildServer_cbx);
+            this.newGuild_gbx.Controls.Add(this.newGuildServer_lbl);
+            this.newGuild_gbx.Controls.Add(this.newGuildName_lbl);
+            this.newGuild_gbx.Controls.Add(this.newGuildName_txt);
+            this.newGuild_gbx.ForeColor = System.Drawing.SystemColors.Control;
+            this.newGuild_gbx.Location = new System.Drawing.Point(12, 394);
+            this.newGuild_gbx.Name = "newGuild_gbx";
+            this.newGuild_gbx.Size = new System.Drawing.Size(373, 118);
+            this.newGuild_gbx.TabIndex = 2;
+            this.newGuild_gbx.TabStop = false;
+            this.newGuild_gbx.Text = "Create New Guild";
             // 
             // addNewGuild_btn
             // 
@@ -435,7 +436,7 @@ namespace Assignment2
             this.Controls.Add(this.playerList_lbl);
             this.Controls.Add(this.playerList_lbx);
             this.Controls.Add(this.title_lbl);
-            this.Controls.Add(this.createGuild_gbx);
+            this.Controls.Add(this.newGuild_gbx);
             this.Controls.Add(this.newPlayer_gbx);
             this.Controls.Add(this.managementFunctions_gbx);
             this.Name = "player_guild_management";
@@ -445,8 +446,8 @@ namespace Assignment2
             this.managementFunctions_gbx.PerformLayout();
             this.newPlayer_gbx.ResumeLayout(false);
             this.newPlayer_gbx.PerformLayout();
-            this.createGuild_gbx.ResumeLayout(false);
-            this.createGuild_gbx.PerformLayout();
+            this.newGuild_gbx.ResumeLayout(false);
+            this.newGuild_gbx.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -463,7 +464,7 @@ namespace Assignment2
         private System.Windows.Forms.TextBox guildSearch_txt;
         private System.Windows.Forms.Label searchPlayer_lbl;
         private System.Windows.Forms.TextBox playerSearch_txt;
-        private System.Windows.Forms.Button aplySearchCrit_btn;
+        private System.Windows.Forms.Button applySearchCrit_btn;
         private System.Windows.Forms.GroupBox newPlayer_gbx;
         private System.Windows.Forms.Button addNewPlayer_btn;
         private System.Windows.Forms.ComboBox newPlayerRole_cbx;
@@ -474,7 +475,7 @@ namespace Assignment2
         private System.Windows.Forms.Label newPlayerClass_lbl;
         private System.Windows.Forms.Label newPlayerNme_lbl;
         private System.Windows.Forms.TextBox newPlayerName_txt;
-        private System.Windows.Forms.GroupBox createGuild_gbx;
+        private System.Windows.Forms.GroupBox newGuild_gbx;
         private System.Windows.Forms.Button addNewGuild_btn;
         private System.Windows.Forms.ComboBox newGuildType_cbx;
         private System.Windows.Forms.Label newGuildType_lbl;

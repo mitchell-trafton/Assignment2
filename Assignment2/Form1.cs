@@ -55,9 +55,16 @@ namespace Assignment2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            /***********************************************************************
+             * Handler for Form 1 load.
+             * 
+             * Initiates the StringWriter for console output and populates all
+             * listboxes/comoboboxes in form except for newPlayerClass_cbx.
+             **********************************************************************/
+
             //initialize StringWriter object for reading text from console output
             sw = new StringWriter();
-            //Console.SetOut(sw);
+            Console.SetOut(sw);
 
 
             //populate newPlayerRace_cbx
@@ -86,18 +93,13 @@ namespace Assignment2
             output_txt.Text = sw.ToString();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void managementFunctions_gbx_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void printRoster_btn_Click(object sender, EventArgs e)
         {
+            /************************************************************
+             * onClick handler for printRoster_btn.
+             * 
+             * Prints list of all players with their guild information.
+             ************************************************************/
 
             List<string> playerList = Globals.game.PrintPlayer();
 
@@ -111,15 +113,15 @@ namespace Assignment2
 
         }
 
-        private void joinGuild_btn_Click(object sender, EventArgs e)
-        {
-            output_txt.Clear();
-
-            output_txt.Text = "work in progress";
-        }
-
         private void addNewPlayer_btn_Click(object sender, EventArgs e)
         {
+            /*************************************************************
+             * onClick handler for addNewPlayer_btn.
+             * 
+             * Adds a new player to the global characters list and players.txt
+             * using data from the fields in newPlayer_gbx.
+             *************************************************************/
+
             uint newPlayerID = 0; //id for new player
 
             if (newPlayerClass_cbx.SelectedIndex == -1 || newPlayerRace_cbx.SelectedIndex == -1 || newPlayerRole_cbx.SelectedIndex == -1 || newPlayerName_txt.Text == "")
@@ -158,6 +160,13 @@ namespace Assignment2
 
         private void addNewGuild_btn_Click(object sender, EventArgs e)
         {
+            /*************************************************************
+             * onClick handler for addNewGuild_btn.
+             * 
+             * Adds a new player to the global guilds list and guilds.txt
+             * using data from the fields in newGuild_gbx.
+             *************************************************************/
+
             uint newGuildID = 0; //id for new guild
 
             if (newGuildName_txt.Text == "" || newGuildServer_cbx.SelectedIndex == -1 || newGuildType_cbx.SelectedIndex == -1)
@@ -193,11 +202,25 @@ namespace Assignment2
 
         private void aplySearchCrit_btn_Click(object sender, EventArgs e)
         {
+            /********************************************************
+             * onClick handler for applySearchCrit_btn.
+             * 
+             * Updates filters for form's listboxes using 
+             * playerSearch_txt and guildSearch_txt fields.
+             ********************************************************/
+
             UpdateFilters(playerSearch_txt.Text, guildSearch_txt.Text);
         }
 
         private void newPlayerClass_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /*********************************************************************
+             * Handler for newPlayerClass_cbx selection change.
+             * 
+             * Updates the contents of newPlayerRole_cbx based on the allowed role(s)
+             * for the selected class in newPlayerClass_cbx.
+             *********************************************************************/
+
             if (newPlayerClass_cbx.SelectedIndex == -1) return;//do nothing if combobox is being reset
 
             newPlayerRole_cbx.Items.Clear();
@@ -208,5 +231,66 @@ namespace Assignment2
                 newPlayerRole_cbx.Items.Add(Enum.GetName(typeof(Role), r));
             }
         }
+
+        private void disbandGuild_btn_Click(object sender, EventArgs e)
+        {
+            /****************************************************************
+             * onClick handler for disbandGuild_btn.
+             * 
+             * Dispands the guild selected in guildList_lbx, and updates guildList_lbx.
+             ****************************************************************/
+
+            if (guildList_lbx.SelectedIndex == -1) return; //do nothng if no guild is selected
+            sw.Flush();
+
+            if (Globals.game.DisbandGuild(displayGuildIDs[guildList_lbx.SelectedIndex]))
+            {//if guild was successfully deleted, display success message and update listboxes
+                output_txt.Text = "Guild successfully deleted.";
+
+                UpdateFilters();
+            }
+            else
+            {//if guild was not successfully deleted, display console messages generated by DisbandGuild()
+                output_txt.Text = sw.ToString();
+            }
+        }
+
+        private void joinGuild_btn_Click(object sender, EventArgs e)
+        {
+            /*********************************************************************
+             * onClick handler for joinGuild_btn.
+             * 
+             * Adds the selected player in playerList_lbx to the guild selected
+             * in guildList_lbx.
+             * 
+             * Player will be removed from previous guild.
+             *********************************************************************/
+
+            sw.Flush();
+
+            if (playerList_lbx.SelectedIndex == -1 || guildList_lbx.SelectedIndex == -1) return; //do nothing if there aren't selections for both player and guild
+
+            Globals.game.JoinGuild(displayPlayerIDs[playerList_lbx.SelectedIndex], displayGuildIDs[guildList_lbx.SelectedIndex]);
+
+            output_txt.Text = sw.ToString();
+        }
+
+        private void leaveGuild_btn_Click(object sender, EventArgs e)
+        {
+            /**************************************************************
+             * onClick handler for leaveGuild_btn.
+             * 
+             * Removes selected player in playerList_lbx from their current guild.
+             **************************************************************/
+            sw.Flush();
+
+            if (playerList_lbx.SelectedIndex == -1) return; //do nothing if there isn't a selection for player
+
+            Globals.game.LeaveGuild(displayPlayerIDs[playerList_lbx.SelectedIndex]);
+
+            output_txt.Text = sw.ToString();
+        }
     }
+
+    
 }

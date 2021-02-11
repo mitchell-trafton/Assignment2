@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 /************************************************************
  * Assignment 1
  * Programmers: Robert Tyler Trotter z1802019
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Assignment2
 
 {
-	public class GameFile
+    public class GameFile
 	{
 		//constructor
 		public GameFile()
@@ -321,19 +321,22 @@ namespace Assignment2
 		public void LeaveGuild(uint pid)
 		{
 			Globals.characters[pid].GuildID = 0;
-			Console.WriteLine(Globals.characters[pid].Name + " Is no longer in a guild.");
+			if (UpdateFiles(player: true)) 
+				Console.WriteLine(Globals.characters[pid].Name + " Is no longer in a guild.");
 		}
 
 		/************************************************************************
 		 * public void JoinGuild
 		 * input: uint pid(player ID), gid(guild ID)
 		 * This assigns the character's guildID field to the one the user specified
-		 * and prints a confirmation message
+		 * and prints a confirmation message if it can be successfully be written to file
 		 * *********************************************************************/
-		public string JoinGuild(uint pid, uint gid)
+		public void JoinGuild(uint pid, uint gid)
         {
 			Globals.characters[pid].GuildID = gid;
-			return Globals.characters[pid].Name + " is now a member of " + Globals.guilds[gid].Name;
+
+			if (UpdateFiles(player: true))
+				Console.WriteLine(Globals.characters[pid].Name + " is now a member of " + Globals.guilds[gid].Name);
         }
 		/**********************************************************************
 		 * public void AddExp
@@ -361,14 +364,16 @@ namespace Assignment2
             }
         }
 		/******************************************************************
-		 * void Disband guild
+		 * bool Disband guild
 		 * input: uint gid, the guild id
 		 * this will first identify if the gid is valid, then will go through
 		 * the player dictionary and identify members of the guild, setting their
 		 * guild ID to 0 before printing a success message, and then removing 
 		 * the guild from the guild dictionary
+		 * 
+		 * returns true/false depending on success
 		 ******************************************************************/
-		public void DisbandGuild(uint gid)
+		public bool DisbandGuild(uint gid)
         {
 			if(Globals.guilds.ContainsKey(gid))
             {
@@ -376,12 +381,19 @@ namespace Assignment2
                 {
 					if (character.Value.GuildID == gid) character.Value.GuildID = 0;
                 }
-				Console.WriteLine("Guild: " + Globals.guilds[gid].Name + " Successfully removed");
 				Globals.guilds.Remove(gid);
+
+				if (UpdateFiles(true, true))
+				{
+					Console.WriteLine("Guild Successfully removed");
+					return true;
+				}
+				else return false;					
 			}
 			else
             {
 				Console.WriteLine("Error: guild with ID: " + gid + "Not found");
+				return false;
             }
         }
 		/**********************************************************************
@@ -466,7 +478,72 @@ namespace Assignment2
 				return false;
             }
         }
-	}
 
-	
+		public bool UpdateFiles(bool player = false, bool guild = false)
+        {
+			bool success = true;//true if all files were updated successfully; return variable
+
+			if (player)
+            {            
+				try
+				{
+					using (File.Create(@"init/players_tmp.txt")) { } //create temp file for storing new player entries
+
+					foreach(Player p in Globals.characters.Values)
+					{
+						string newPlayerEntry = "";
+
+						newPlayerEntry += p.ID.ToString() + '\t';
+						newPlayerEntry += p.Name + '\t';
+						newPlayerEntry += ((int)p.Race).ToString() + '\t';
+						newPlayerEntry += ((int)p.Class_).ToString() + '\t';
+						newPlayerEntry += p.Level.ToString() + '\t';
+						newPlayerEntry += p.Exp.ToString() + '\t';
+						newPlayerEntry += p.GuildID.ToString();
+
+						if (new FileInfo(@"init/players_tmp.txt").Length == 0) File.AppendAllText(@"init/players_tmp.txt", newPlayerEntry);
+						else File.AppendAllText(@"init/players_tmp.txt", Environment.NewLine + newPlayerEntry);
+					}
+
+					File.Copy(@"init/players_tmp.txt", @"init/players.txt", true);
+					File.Delete(@"init/players_tmp.txt");
+				}
+				catch (Exception e)
+                {
+					Console.WriteLine("Error: Unable to overwrite existing player data.");
+					success = false;
+                }
+			}
+
+			if (guild)
+            {
+                try
+                {
+					using (File.Create(@"init/guilds_tmp.txt")) { } //create temp file for storing new player entries
+
+					foreach (Guild g in Globals.guilds.Values)
+                    {
+						string newGuildEntry = "";
+
+						newGuildEntry += g.GID.ToString() + '\t';
+						newGuildEntry += g.Name + '-';
+						newGuildEntry += g.Server;
+
+						if (new FileInfo(@"init/guilds_tmp.txt").Length == 0) File.AppendAllText(@"init/guilds_tmp.txt", newGuildEntry);
+						else File.AppendAllText(@"init/guilds_tmp.txt", Environment.NewLine + newGuildEntry);
+					}
+
+					File.Copy(@"init/guilds_tmp.txt", @"init/guilds.txt", true);
+					File.Delete(@"init/guilds_tmp.txt");
+                }
+				catch (Exception e)
+                {
+					Console.WriteLine("Error: Unable to overwrite existing guild data.");
+					success = false;
+                }
+            }
+
+			return success;
+        }
+	}
 }
