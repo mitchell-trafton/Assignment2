@@ -432,6 +432,16 @@ namespace Assignment2
 
 		public bool AddPlayer(Player p)
 		{
+			/******************************************************************
+			 * Public bool AddPlayer()
+			 * 
+			 * Adds player to players.cs along with global characters list.
+			 * 
+			 * Params:
+			 * @p = Player object to add.
+			 * 
+			 * Returns true upon successful write.
+			 *****************************************************************/
             try
             {
 				string newPlayerEntry = "";
@@ -459,8 +469,19 @@ namespace Assignment2
 
 		public bool AddGuild(Guild g)
         {
-            try
-            {
+			/******************************************************************
+			 * Public bool AddGuild()
+			 * 
+			 * Adds guild to guilds.cs along with global guilds list.
+			 * 
+			 * Params:
+			 * @g = Guild object to add.
+			 * 
+			 * Returns true upon successful write.
+			 *****************************************************************/
+
+			try
+			{
 				string newGuildEntry = "";
 
 				newGuildEntry += g.GID.ToString() + '\t';
@@ -481,6 +502,19 @@ namespace Assignment2
 
 		public bool UpdateFiles(bool player = false, bool guild = false)
         {
+			/************************************************************************************
+			 * Public bool UpdateFiles()
+			 * 
+			 * Updates the players.txt and/or guilds.txt files with information in their corresponding
+			 * global dictionaries.
+			 * 
+			 * Params:
+			 * @player = True if players.txt should be updated.
+			 * @guild  = True if guilds.txt should be updated.
+			 * 
+			 * Returns true upon successful write(s).
+			 ************************************************************************************/
+
 			bool success = true;//true if all files were updated successfully; return variable
 
 			if (player)
