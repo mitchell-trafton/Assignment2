@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 /************************************************************
- * Assignment 1
+ * Assignment 2
  * Programmers: Robert Tyler Trotter z1802019
  *              Mitchell Trafton     z1831076
  ***********************************************************/
@@ -11,7 +11,7 @@ using System.IO;
 namespace Assignment2
 
 {
-    public class GameFile
+	public class GameFile
 	{
 		//constructor
 		public GameFile()
@@ -91,7 +91,7 @@ namespace Assignment2
 				Console.WriteLine(e.Message);
 			}
 			try
-			{ 
+			{
 				//importing Players now
 				using (StreamReader inCharacter = new StreamReader("init/players.txt"))
 				{
@@ -142,34 +142,34 @@ namespace Assignment2
 		 * ToString() in a list of strings to use
 		 ****************************************************************/
 		public List<string> PrintItems()
-        {
+		{
 			List<string> itemList = new List<string>();//list of items; return variable
 
-			foreach(KeyValuePair<uint, Item> item in Globals.items)
-            {
+			foreach (KeyValuePair<uint, Item> item in Globals.items)
+			{
 				itemList.Add(item.ToString());
-            }
+			}
 			itemList.Add("End of items");
 
 			return itemList;
-        }
+		}
 		/****************************************************************
 		* List<string> PrintGuild() 
 		* This will loop through each guild entryusing the ToString override 
 		* within that class, and place it in a list of strings for use.
 		*****************************************************************/
 		public List<string> PrintGuild()
-        {
+		{
 			List<string> guildList = new List<string>();//list of guilds; return variable
 
-			foreach(KeyValuePair<uint, Guild> guild in Globals.guilds)
-            {
+			foreach (KeyValuePair<uint, Guild> guild in Globals.guilds)
+			{
 				guildList.Add(guild.Value.Name);
-            }
+			}
 			guildList.Add("End of Guilds");
 
 			return guildList;
-        }
+		}
 		/****************************************************************
 		 * List<string> PrintPlayer()
 		 * this will loop through each player entry in the dictionary
@@ -177,17 +177,17 @@ namespace Assignment2
 		 * in a list of strings for use.
 		 ****************************************************************/
 		public List<string> PrintPlayer()
-        {
+		{
 			List<string> playerList = new List<string>(); //list of strings containing player information; return variable
 
-			foreach(KeyValuePair<uint, Player> character in Globals.characters)
-            {
+			foreach (KeyValuePair<uint, Player> character in Globals.characters)
+			{
 				playerList.Add(character.Value.ToString());
-            }
+			}
 			playerList.Add("End of players");
 
 			return playerList;
-        }
+		}
 		/***************************************************************************
 		 * public int SelectPlayer()
 		 * returns: int version of a Dictionary Player ID, or -1 for invalid entry
@@ -198,12 +198,12 @@ namespace Assignment2
 		 * 
 		 *************************************************************************/
 		public int SelectPlayer()
-        {
+		{
 			int selection = 0;//used for user selection
 			string userIn;//used to catch user input
 			Dictionary<int, uint> translate = new Dictionary<int, uint>();//used to match user input to the key of the character for selection
-			foreach(KeyValuePair<uint, Player> character in Globals.characters)
-            {
+			foreach (KeyValuePair<uint, Player> character in Globals.characters)
+			{
 				Console.WriteLine(selection + " " + character.Value.Name);
 				translate.Add(selection, character.Key);// match the character key with a shorthand user selection
 				selection++;
@@ -211,22 +211,22 @@ namespace Assignment2
 			Console.WriteLine("Please select the Player: ");
 			userIn = Console.ReadLine();
 			//try block for input scrubbing, if we catch an exception then we kick back out to menu with no changes done
-            try 
+			try
 			{
 				selection = Int32.Parse(userIn);
-				if(selection < 0 || selection >= Globals.characters.Count)
-                {
+				if (selection < 0 || selection >= Globals.characters.Count)
+				{
 					Console.WriteLine("Invalid entry, returning to Menu with no changes");
-                }
-                else
-                {
+				}
+				else
+				{
 					return (int)translate[selection];
-                }
+				}
 			}
-			catch(Exception e)
-            {
+			catch (Exception e)
+			{
 				Console.WriteLine("Invalid entry, returning to Menu with no changes");
-            }
+			}
 			return -1;
 		}
 		/***********************************************************************
@@ -264,7 +264,7 @@ namespace Assignment2
 					return (int)translate[selection];
 				}
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				Console.WriteLine("Invalid entry, returning to Menu with no changes");
 			}
@@ -305,7 +305,7 @@ namespace Assignment2
 					return (int)translate[selection];
 				}
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				Console.WriteLine("Invalid entry, returning to Menu with no changes");
 			}
@@ -321,7 +321,7 @@ namespace Assignment2
 		public void LeaveGuild(uint pid)
 		{
 			Globals.characters[pid].GuildID = 0;
-			if (UpdateFiles(player: true)) 
+			if (UpdateFiles(player: true))
 				Console.WriteLine(Globals.characters[pid].Name + " Is no longer in a guild.");
 		}
 
@@ -332,12 +332,12 @@ namespace Assignment2
 		 * and prints a confirmation message if it can be successfully be written to file
 		 * *********************************************************************/
 		public void JoinGuild(uint pid, uint gid)
-        {
+		{
 			Globals.characters[pid].GuildID = gid;
 
 			if (UpdateFiles(player: true))
 				Console.WriteLine(Globals.characters[pid].Name + " is now a member of " + Globals.guilds[gid].Name);
-        }
+		}
 		/**********************************************************************
 		 * public void AddExp
 		 * input uint pid (Player ID)
@@ -346,23 +346,23 @@ namespace Assignment2
 		 * and current experience
 		 * *********************************************************************/
 		public void AddExp(uint pid)
-        {
+		{
 			int xp;
 			Console.WriteLine("How much experience would you like to award?");
-            try
-            {
+			try
+			{
 				xp = Int32.Parse(Console.ReadLine());// read what the user wrote
-				if(xp > 0)
-                {
+				if (xp > 0)
+				{
 					Globals.characters[pid].Exp = (uint)xp;
 					Console.WriteLine(Globals.characters[pid].Name + " is level: " + Globals.characters[pid].Level + " And has: " + Globals.characters[pid].Exp + "Experience");
-                }
-            }
-			catch(Exception e)
-            {
+				}
+			}
+			catch (Exception e)
+			{
 
-            }
-        }
+			}
+		}
 		/******************************************************************
 		 * bool Disband guild
 		 * input: uint gid, the guild id
@@ -374,13 +374,13 @@ namespace Assignment2
 		 * returns true/false depending on success
 		 ******************************************************************/
 		public bool DisbandGuild(uint gid)
-        {
-			if(Globals.guilds.ContainsKey(gid))
-            {
+		{
+			if (Globals.guilds.ContainsKey(gid))
+			{
 				foreach (KeyValuePair<uint, Player> character in Globals.characters)
-                {
+				{
 					if (character.Value.GuildID == gid) character.Value.GuildID = 0;
-                }
+				}
 				Globals.guilds.Remove(gid);
 
 				if (UpdateFiles(true, true))
@@ -388,14 +388,14 @@ namespace Assignment2
 					Console.WriteLine("Guild Successfully removed");
 					return true;
 				}
-				else return false;					
+				else return false;
 			}
 			else
-            {
+			{
 				Console.WriteLine("Error: guild with ID: " + gid + "Not found");
 				return false;
-            }
-        }
+			}
+		}
 		/**********************************************************************
 		 * Public Void Sorting()
 		 * no inputs
@@ -404,30 +404,30 @@ namespace Assignment2
 		 * 
 		 **********************************************************************/
 		public void Sorting()
-        {
+		{
 			ArrayList itemList = new ArrayList();
 			ArrayList playerList = new ArrayList();
-			foreach(KeyValuePair<uint, Item> item in Globals.items)
-            {
+			foreach (KeyValuePair<uint, Item> item in Globals.items)
+			{
 				itemList.Add(item.Value);
-            }
-			foreach(KeyValuePair<uint, Player> player in Globals.characters)
-            {
+			}
+			foreach (KeyValuePair<uint, Player> player in Globals.characters)
+			{
 				playerList.Add(player.Value);
 
-            }
+			}
 			itemList.Sort();
 			playerList.Sort();
 
-			foreach(Item item in itemList)
-            {
+			foreach (Item item in itemList)
+			{
 				Console.WriteLine(item.ToString());
-            }
-			foreach(Player player in playerList)
-            {
+			}
+			foreach (Player player in playerList)
+			{
 				Console.WriteLine(player.ToString());
-            }
-        }
+			}
+		}
 
 
 		public bool AddPlayer(Player p)
@@ -442,8 +442,8 @@ namespace Assignment2
 			 * 
 			 * Returns true upon successful write.
 			 *****************************************************************/
-            try
-            {
+			try
+			{
 				string newPlayerEntry = "";
 
 				newPlayerEntry += p.ID.ToString() + '\t';
@@ -459,16 +459,16 @@ namespace Assignment2
 				Globals.characters.Add(p.ID, p);
 
 				return true;
-            }
+			}
 			catch (Exception e)
-            {//if player was unable to be created, return false
+			{//if player was unable to be created, return false
 				return false;
-            }
+			}
 		}
 
 
 		public bool AddGuild(Guild g)
-        {
+		{
 			/******************************************************************
 			 * Public bool AddGuild()
 			 * 
@@ -493,15 +493,15 @@ namespace Assignment2
 				Globals.guilds.Add(g.GID, g);
 
 				return true;
-            }
+			}
 			catch (Exception e)
-            {//if new guild was unable to be created, return false
+			{//if new guild was unable to be created, return false
 				return false;
-            }
-        }
+			}
+		}
 
 		public bool UpdateFiles(bool player = false, bool guild = false)
-        {
+		{
 			/************************************************************************************
 			 * Public bool UpdateFiles()
 			 * 
@@ -518,12 +518,12 @@ namespace Assignment2
 			bool success = true;//true if all files were updated successfully; return variable
 
 			if (player)
-            {            
+			{
 				try
 				{
 					using (File.Create(@"init/players_tmp.txt")) { } //create temp file for storing new player entries
 
-					foreach(Player p in Globals.characters.Values)
+					foreach (Player p in Globals.characters.Values)
 					{
 						string newPlayerEntry = "";
 
@@ -543,20 +543,20 @@ namespace Assignment2
 					File.Delete(@"init/players_tmp.txt");
 				}
 				catch (Exception e)
-                {
+				{
 					Console.WriteLine("Error: Unable to overwrite existing player data.");
 					success = false;
-                }
+				}
 			}
 
 			if (guild)
-            {
-                try
-                {
+			{
+				try
+				{
 					using (File.Create(@"init/guilds_tmp.txt")) { } //create temp file for storing new player entries
 
 					foreach (Guild g in Globals.guilds.Values)
-                    {
+					{
 						string newGuildEntry = "";
 
 						newGuildEntry += g.GID.ToString() + '\t';
@@ -569,15 +569,15 @@ namespace Assignment2
 
 					File.Copy(@"init/guilds_tmp.txt", @"init/guilds.txt", true);
 					File.Delete(@"init/guilds_tmp.txt");
-                }
+				}
 				catch (Exception e)
-                {
+				{
 					Console.WriteLine("Error: Unable to overwrite existing guild data.");
 					success = false;
-                }
-            }
+				}
+			}
 
 			return success;
-        }
+		}
 	}
 }
