@@ -137,9 +137,9 @@ namespace Assignment2
 
 		}
 		/*****************************************************************
-		 * void PrintItems()
-		 * this will loop through the items dictionary and print out each
-		 * entry using the ToString overwrite we did within that file
+		 * List<string> PrintItems()
+		 * this will loop through the items dictionary and place their 
+		 * ToString() in a list of strings to use
 		 ****************************************************************/
 		public List<string> PrintItems()
         {
@@ -154,9 +154,9 @@ namespace Assignment2
 			return itemList;
         }
 		/****************************************************************
-		* void PrintGuild() 
-		* This will loop through each guild entry and print out the string
-		* holding the guild name.
+		* List<string> PrintGuild() 
+		* This will loop through each guild entryusing the ToString override 
+		* within that class, and place it in a list of strings for use.
 		*****************************************************************/
 		public List<string> PrintGuild()
         {
