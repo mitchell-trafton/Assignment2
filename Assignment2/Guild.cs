@@ -43,10 +43,6 @@ namespace Assignment2
 			string[] subs = tname.Split('-');
 			name = subs[0];
 			server = subs[1];
-			if (!Globals.servers.Contains(server))
-			{
-				Globals.servers.Add(server);
-			}
 
 		}
 		/*****************************************************************
@@ -66,10 +62,6 @@ namespace Assignment2
 				string[] subs = tname.Split('-');
 				name = subs[0];
 				server = subs[1];
-				if (!Globals.servers.Contains(server))
-				{
-					Globals.servers.Add(server);
-				}
 			}
 			else
             {

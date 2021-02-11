@@ -73,8 +73,9 @@ namespace Assignment2
                 newPlayerRole_cbx.Items.Add(Enum.GetName(typeof(Role), r));
 
             //populate newGuildServer_cbx
-            foreach (string server in Globals.servers)
-                newGuildServer_cbx.Items.Add(server);
+            foreach (KeyValuePair<uint, Guild> guild in Globals.guilds)
+                if (!newGuildServer_cbx.Items.Contains(guild.Value.Server))
+                    newGuildServer_cbx.Items.Add(guild.Value.Server);
 
             //populate newGuildType_cbx
             foreach (GuildType g in Enum.GetValues(typeof(GuildType)))

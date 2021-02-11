@@ -17,6 +17,5 @@ namespace Assignment2
         public static Dictionary<uint, Player> characters = new Dictionary<uint, Player>();
 
         public static GameFile game = new GameFile();
-        public static List<string> servers = new List<string>();
     }
 }

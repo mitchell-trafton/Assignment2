@@ -34,7 +34,6 @@ namespace Assignment2
 				//loading in the guilds into our Dictionary for use
 				using (StreamReader inGuild = new StreamReader("init/guilds.txt"))
 				{
-					Globals.servers = new List<string>();//reset servers list or it will throw an error
 					string line;
 					uint id;
 					string name;
