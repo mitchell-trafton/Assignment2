@@ -81,5 +81,13 @@ namespace Assignment2
         {
 			return name + "\t" + type + "\t" + server;
         }
+
+		public string ToStringBasic()
+        {
+			/*************************************************************************************
+             * Returns a string containing a guild's name with it's server in brackets.
+             *************************************************************************************/
+			return name.PadRight(35, ' ') + "\t[" + server + "]";
+        }
 	}
 }
