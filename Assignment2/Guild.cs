@@ -87,7 +87,7 @@ namespace Assignment2
 			/*************************************************************************************
              * Returns a string containing a guild's name with it's server in brackets.
              *************************************************************************************/
-			return name.PadRight(35, ' ') + "\t[" + server + "]";
+			return name.PadRight(30, ' ') + "\t[" + server + "]";
         }
 	}
 }
