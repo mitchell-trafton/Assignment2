@@ -15,6 +15,17 @@ namespace Assignment2
 			name = "N/A";
 			server = "N/A";
 		}
+		public Guild(uint tid = 0, GuildType ttype = (GuildType)0, string tname = "")
+        {
+			string[] subs = tname.Split('\t');
+			name = subs[0];
+			server = subs[1];
+			if (!Globals.servers.Contains(server))
+			{
+				Globals.servers.Add(server);
+			}
+
+		}
 		public Guild(uint tid = 0, GuildType ttype = (GuildType)0, string tname = "", string tserver = "")
 		{
 			//checks to see if we were given a server name, since loading from file is deliniated by a dash, we will handle it in this class
